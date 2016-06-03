@@ -50,6 +50,8 @@
 
 	__webpack_require__(4);
 
+	__webpack_require__(5);
+
 	riot.mount('*');
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
@@ -2602,7 +2604,40 @@
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(riot) {riot.tag2('app', '<b>Example App</b>', '', '', function(opts) {
+	/* WEBPACK VAR INJECTION */(function(riot) {riot.tag2('app', '<h1>{message}</h1> <input name="name" type="text"> <div each="{breakpoint in breakpoints}"> <breakpoint label="{breakpoint.label}" pixel="{breakpoint.pixel}"></breakpoint> </div>', '', '', function(opts) {
+	        this.message = 'Flex Maid'
+	        this.breakpoints = [
+	            {
+	                label: 'sm',
+	                pixel: 500
+	            },
+	            {
+	                label: 'md',
+	                pixel: 920
+	            },
+	            {
+	                label: 'lg',
+	                pixel: 1200
+	            },
+	        ]
+
+	        this.on('remove', (breakpoint) => {
+	            this.breakpoints = this.breakpoints.filter((bp) => {
+	                return breakpoint.opts.label != bp.label
+	            })
+	        })
+	});
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(riot) {riot.tag2('breakpoint', '<span onclick="{remove}">&times;</span> <b contenteditable>{opts.label} - {opts.pixel}</b>', '', '', function(opts) {
+	        this.remove = function() {
+	            this.parent.trigger('remove', this)
+	        }.bind(this)
 	});
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
