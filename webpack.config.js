@@ -15,6 +15,11 @@ module.exports = {
     module: {
         loaders: [
             { test: /\.html$/, loader: 'riotjs' },
+            {
+                test: /\.(jpe?g|png|gif|svg|mp4)$/i,
+                loader:'file-loader'
+            },
+            { test: /\.less$/, loader: 'style!css!less' },
             { test: /\.js$/, loader: 'babel', query: { presets: 'es2015-riot' } }
         ]
     }
