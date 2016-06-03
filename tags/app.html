@@ -1,4 +1,33 @@
 <app>
-    <b>Example App</b>
-    <script></script>
+    <header>
+        <h1>Flex Maid</h1>
+    </header>
+    <input name="name" type="text">
+    <div each={breakpoint in breakpoints}>
+        <breakpoint label="{breakpoint.label}" pixel="{breakpoint.pixel}"></breakpoint>
+    </div>
+    <script>
+        this.breakpoints = [
+            {
+                label: 'sm',
+                pixel: 500
+            },
+            {
+                label: 'md',
+                pixel: 920
+            },
+            {
+                label: 'lg',
+                pixel: 1200
+            },
+        ]
+
+
+
+        this.on('remove', (breakpoint) => {
+            this.breakpoints = this.breakpoints.filter((bp) => {
+                return breakpoint.opts.label != bp.label
+            })
+        })
+    </script>
 </app>
