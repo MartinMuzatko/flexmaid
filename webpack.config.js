@@ -12,32 +12,10 @@ module.exports = {
             riot: 'riot'
         })
     ],
-    loaders: [
-        { test: /\.html$/, loader: 'riotjs' },
-        { test: /\.js$/, loader: 'babel', query: { presets: 'es2015-riot' } },
-        {
-            test: /\.css$/,
-            loaders: [
-                'style',
-                'css',
-                'postcss'
-            ]
-        },
-        {
-            test: /\.scss$/,
-            loaders: [
-                'style',
-                'css',
-                'sass'
-            ]
-        },
-        {
-            test: /\.less$/,
-            loaders: [
-                'style',
-                'css',
-                'less'
-            ]
-        }
-    ]
+    module: {
+        loaders: [
+            { test: /\.html$/, loader: 'riotjs' },
+            { test: /\.js$/, loader: 'babel', query: { presets: 'es2015-riot' } }
+        ]
+    }
 }
