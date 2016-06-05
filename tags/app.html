@@ -37,6 +37,25 @@
             },
         ]
 
+        add(e) {
+            var equallyLabeledItems = this.breakpoints.filter((item) => {
+                return item.label === this.label.value
+            })
+            var pixel = Math.random() * 1900 | 0
+            if (!equallyLabeledItems.length && this.label.value.length) {
+                var breakpointPushIndex = 0
+                this.breakpoints.filter((item, index) => {
+                    if (pixel >= item.pixel) {
+                        breakpointPushIndex = index + 1
+                    }
+                })
+                console.log(breakpointPushIndex + ' - ' + pixel);
+                this.breakpoints.splice(breakpointPushIndex, 0, {
+                    label: this.label.value,
+                    pixel: pixel
+                })
+            }
+        }
 
 
         this.on('remove', (breakpoint) => {
