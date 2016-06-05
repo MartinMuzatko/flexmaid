@@ -1,6 +1,10 @@
 <breakpoint>
-    <span onclick={remove}>&times;</span>
-    <b contenteditable>{opts.label} - {opts.pixel}</b>
+    <div>
+        <span onclick={remove}>&times;</span>
+    </div>
+    <div>
+        <span>{opts.label} - {opts.pixel}</span>
+    </div>
     <script>
         remove() {
             this.parent.trigger('remove', this)

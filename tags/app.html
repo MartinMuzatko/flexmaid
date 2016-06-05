@@ -10,10 +10,17 @@
             </div>
         </div>
     </header>
-    <input name="name" type="text">
-    <div each={breakpoint in breakpoints}>
-        <breakpoint label="{breakpoint.label}" pixel="{breakpoint.pixel}"></breakpoint>
-    </div>
+    <input type="submit" onclick={add} name="name" value="subimt">
+    <section class="breakpoints">
+        <breakpoint
+        each={breakpoint, index in breakpoints}
+        layout="row" layout-align="space-between"
+        style="background-color: hsl(330, 50%, {25+(50/breakpoints.length)*index}%)"
+        label="{breakpoint.label}"
+        pixel="{breakpoint.pixel}">
+
+        </breakpoint>
+    </section>
     <script>
         this.breakpoints = [
             {
