@@ -2620,29 +2620,45 @@
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(riot) {riot.tag2('app', '<header> <div layout layout-align="start start"> <img width="175" src="img/flexmaid.png" alt=""> <div> <h1>Flex Maid</h1> <span> At your service </span> </div> </div> </header> <section> <div layout="column" layout-align="center"> <form layout layout-align="space-around start"> <input type="text" value="xl" name="label"> {pixel}px <input type="submit" onclick="{add}" name="name" value="add"> </form> <div class="slider" name="pixelSlider"></div> </div> </section> <section class="breakpoints"> <breakpoint each="{breakpoint, index in breakpoints}" layout="row" layout-align="space-between" riot-style="background-color: hsl(330, 50%, {25+(50/breakpoints.length)*index}%)" label="{breakpoint.label}" pixel="{breakpoint.pixel}"> </breakpoint> </section>', '', '', function(opts) {
+	/* WEBPACK VAR INJECTION */(function(riot) {riot.tag2('app', '<header> <div layout layout-align="start start"> <img width="175" src="img/flexmaid.png" alt=""> <div> <h1>Flex Maid</h1> <span> At your service </span> </div> </div> </header> <section> <div layout="column" layout-align="center"> <form layout layout-align="space-around start"> <input type="text" onkeyup="{changeName}" name="label" value="{breakpoint.label}"> {breakpoint.pixel}px <input type="submit" onclick="{add}" value="add"> </form> <div class="slider" name="pixelSlider"></div> </div> </section> <section class="breakpoints"> <breakpoint each="{breakpoint, index in breakpoints}" if="{breakpoint.active}" layout="row" layout-align="space-between" onclick="{select}" riot-style="background-color: hsl(330, 50%, {50+(40/breakpoints.length)*index}%)" label="{breakpoint.label}" pixel="{breakpoint.pixel}"> </breakpoint> </section>', '', '', function(opts) {
 	        this.breakpoints = [
 	            {
 	                label: 'sm',
-	                pixel: 640
+	                pixel: 640,
+	                active: true
 	            },
 	            {
 	                label: 'md',
-	                pixel: 960
+	                pixel: 960,
+	                active: true
 	            },
 	            {
 	                label: 'lg',
-	                pixel: 1280
+	                pixel: 1280,
+	                active: true
+	            },
+	            {
+	                label: 'xl',
+	                pixel: 1920,
+	                active: false
 	            },
 	        ]
 
-	        this.pixel = 1600
+	        this.breakpoint = this.breakpoints[3]
+
+	        this.changeName = function(e) {
+	            this.breakpoint.label = e.target.value
+	        }.bind(this)
+
+	        this.select = function(e) {
+	            this.breakpoint = e.item.breakpoint
+	        }.bind(this)
 
 	        this.add = function(e) {
 	            var equallyLabeledItems = this.breakpoints.filter((item) => {
-	                return item.label === this.label.value
+	                return item.label === this.breakpoint.value
 	            })
-	            var pixel = this.pixel
+	            var pixel = this.breakpoint.pixel
 	            if (!equallyLabeledItems.length && this.label.value.length) {
 	                var breakpointPushIndex = 0
 	                this.breakpoints.filter((item, index) => {
@@ -2653,13 +2669,14 @@
 	                console.log(breakpointPushIndex + ' - ' + pixel);
 	                this.breakpoints.splice(breakpointPushIndex, 0, {
 	                    label: this.label.value,
-	                    pixel: pixel
+	                    pixel: pixel,
+	                    active: true
+
 	                })
 	            }
 	        }.bind(this)
 
 	        this.on('mount', () => {
-	            console.log(this)
 	            this.noUiSlider.create(this.pixelSlider, {
 	            	start: [this.pixel],
 	            	range: {
@@ -2675,7 +2692,7 @@
 	            })
 
 	            this.pixelSlider.noUiSlider.on('update', () => {
-	                this.pixel = this.pixelSlider.noUiSlider.get() | 0
+	                this.breakpoint.pixel = this.pixelSlider.noUiSlider.get() | 0
 	                this.update()
 	            })
 	        })
