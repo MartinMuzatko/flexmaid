@@ -43,11 +43,13 @@
             },
         ]
 
+        this.pixel = 1600
+
         add(e) {
             var equallyLabeledItems = this.breakpoints.filter((item) => {
                 return item.label === this.label.value
             })
-            var pixel = Math.random() * 1900 | 0
+            var pixel = this.pixel
             if (!equallyLabeledItems.length && this.label.value.length) {
                 var breakpointPushIndex = 0
                 this.breakpoints.filter((item, index) => {
@@ -66,16 +68,22 @@
         this.on('mount', () => {
             console.log(this)
             this.noUiSlider.create(this.pixelSlider, {
-            	start: [20],
+            	start: [this.pixel],
             	range: {
             		'min': 320,
             		'max': 1920
             	},
+                step: 32,
                 pips: {
                     mode: 'count',
                     values: 6,
                     density: 2
                 }
+            })
+
+            this.pixelSlider.noUiSlider.on('update', () => {
+                this.pixel = this.pixelSlider.noUiSlider.get() | 0
+                this.update()
             })
         })
 
