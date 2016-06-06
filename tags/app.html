@@ -11,10 +11,12 @@
         </div>
     </header>
     <section>
-        <div>
-            <input type="text" name="label">
+        <div layout="column" layout-align="center">
+            <form layout layout-align="space-around start">
+                <input type="text" value="xl" name="label"> {pixel}px
+                <input type="submit" onclick={add} name="name" value="add">
+            </form>
             <div class="slider" name="pixelSlider"></div>
-            <input type="submit" onclick={add} name="name" value="subimt">
         </div>
     </section>
     <section class="breakpoints">

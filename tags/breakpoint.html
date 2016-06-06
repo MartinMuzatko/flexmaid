@@ -1,9 +1,11 @@
 <breakpoint>
-    <div>
-        <span onclick={remove}>&times;</span>
-    </div>
-    <div>
-        <span>{opts.label} - {opts.pixel}</span>
+    <div layout layout-align="space-between">
+        <div>
+            <span onclick={remove}>&times;</span>
+        </div>
+        <div>
+            <span>{opts.label} - {opts.pixel}</span>
+        </div>
     </div>
     <script>
         remove() {
