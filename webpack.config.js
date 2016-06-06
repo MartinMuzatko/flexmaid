@@ -26,7 +26,7 @@ module.exports = {
         ]
     },
     postcss: function () {
-        return [autoprefixer];
+        return [autoprefixer({browsers: 'last 2 versions'})];
     },
     devServer: {
         port: 7070,

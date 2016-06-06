@@ -10,7 +10,14 @@
             </div>
         </div>
     </header>
-    <input type="submit" onclick={add} name="name" value="subimt">
+    <section>
+        <div>
+            <input type="text" name="label">
+            <div class="slider" name="pixelSlider"></div>
+            <input type="submit" onclick={add} name="name" value="subimt">
+        </div>
+    </section>
+
     <section class="breakpoints">
         <breakpoint
         each={breakpoint, index in breakpoints}
@@ -56,6 +63,22 @@
                 })
             }
         }
+
+        this.on('mount', () => {
+            console.log(this)
+            this.noUiSlider.create(this.pixelSlider, {
+            	start: [20],
+            	range: {
+            		'min': 320,
+            		'max': 1920
+            	},
+                pips: {
+                    mode: 'count',
+                    values: 6,
+                    density: 2
+                }
+            })
+        })
 
 
         this.on('remove', (breakpoint) => {

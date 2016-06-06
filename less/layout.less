@@ -7,7 +7,7 @@ LAYOUT
 
 * {
     box-sizing: border-box;
-    transition: all @duration-action ease;
+    transition: opacity color height width @duration-action ease;
 }
 
 header {
@@ -16,10 +16,18 @@ header {
     font-size: 2em;
 }
 
+header + section {
+    .stripe(small, 1*16, @color-light);
+}
+
 section.breakpoints > * {
     .stripe(small, fluid);
 }
 
 breakpoint {
     display: block;
+}
+
+.slider {
+    margin: 1em 0 3em;
 }
