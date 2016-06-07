@@ -9,22 +9,25 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: ''
     },
-    plugins: [
-        new webpack.ProvidePlugin({
-            riot: 'riot'
-        })
-    ],
     module: {
+        preLoaders: [
+            { test: /\.html$/, loader: 'riotjs' }
+        ],
         loaders: [
-            { test: /\.html$/, loader: 'riotjs' },
             {
                 test: /\.(jpe?g|png|gif|svg|mp4)$/i,
                 loader:'file-loader'
             },
             { test: /\.less$/, loader: 'style!css!postcss!less' },
-            { test: /\.js$/, loader: 'babel', query: { presets: 'es2015-riot' } }
+            { test: /\.js$|\.html$/, loader: 'babel', query: { presets: 'es2015-riot' } }
         ]
     },
+    plugins: [
+        new webpack.ProvidePlugin({
+            riot: 'riot'
+        }),
+        new webpack.optimize.UglifyJsPlugin({warnings: false})
+    ],
     postcss: function () {
         return [autoprefixer({browsers: 'last 2 versions'})];
     },
