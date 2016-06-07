@@ -77,12 +77,14 @@
                     }
                 })
                 console.log(breakpointPushIndex + ' - ' + pixel);
-                this.breakpoints.splice(breakpointPushIndex, 0, {
+                this.breakpoint.active = true
+                this.breakpoint = {
                     label: this.label.value,
                     pixel: pixel,
                     active: true
 
-                })
+                }
+                this.breakpoints.splice(breakpointPushIndex, 0, this.breakpoint)
             }
         }
 
