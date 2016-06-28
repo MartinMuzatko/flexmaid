@@ -54,18 +54,24 @@
             },
         ]
 
-        this.breakpoint = this.breakpoints[3]
+        this.breakpoint = {}
 
         changeName(e) {
             this.breakpoint.label = e.target.value
         }
 
         select(e) {
-            this.breakpoint = e.item.breakpoint
+            this.switchBreakpoint(e.item.breakpoint)
+        }
+
+        this.switchBreakpoint = (breakpoint) => {
+            this.breakpoint = breakpoint
+            debugger
+            this.pixelSlider.noUiSlider.set(breakpoint.pixel)
         }
 
         add(e) {
-            var equallyLabeledItems = this.breakpoints.filter((item) => {
+            var equallyLabeledItems = this.breakpoints.filter(item => {
                 return item.label === this.breakpoint.value
             })
             var pixel = this.breakpoint.pixel
@@ -76,7 +82,6 @@
                         breakpointPushIndex = index + 1
                     }
                 })
-                console.log(breakpointPushIndex + ' - ' + pixel);
                 this.breakpoint.active = true
                 this.breakpoint = {
                     label: this.label.value,
@@ -84,7 +89,7 @@
                     active: true
 
                 }
-                this.breakpoints.splice(breakpointPushIndex, 0, this.breakpoint)
+                //this.breakpoints.splice(breakpointPushIndex, 0, this.breakpoint)
             }
         }
 
@@ -103,12 +108,21 @@
                 }
             })
 
+            this.switchBreakpoint(this.breakpoints[3])
+
             this.pixelSlider.noUiSlider.on('update', () => {
-                this.breakpoint.pixel = this.pixelSlider.noUiSlider.get() | 0
-                this.update()
+                this.trigger('sliderUpdated')
             })
         })
 
+        this.on('sliderUpdated', () => {
+            this.breakpoint.pixel = this.pixelSlider.noUiSlider.get() | 0
+            console.log(this.breakpoints)
+            this.breakpoints.sort((previous, next) => {
+                return previous.pixel - next.pixel
+            })
+            this.update()
+        })
 
         this.on('remove', (breakpoint) => {
             this.breakpoints = this.breakpoints.filter((bp) => {
