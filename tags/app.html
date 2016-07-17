@@ -12,9 +12,9 @@
         </div>
         <p><small>Love this tool?</small> <iframe src="https://ghbtns.com/github-btn.html?user=MartinMuzatko&repo=flexmaid&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></p>
     </header>
-    <section>
+    <section class="code">
         <div>
-
+            <rg-code editor={editor}></rg-code>
         </div>
     </section>
     <section>
@@ -28,6 +28,7 @@
     </section>
     <section class="breakpoints">
         <breakpoint
+        no-reorder
         each={breakpoint, index in breakpoints}
         if={breakpoint.active}
         layout="row" layout-align="space-between"
@@ -38,6 +39,13 @@
         </breakpoint>
     </section>
     <script>
+
+        this.editor = {
+            code: '<a href="">',
+            mode: 'html',
+            tabsize: 4
+        }
+
         this.breakpoints = [
             {
                 label: 'sm',
@@ -73,7 +81,6 @@
 
         this.switchBreakpoint = (breakpoint) => {
             this.breakpoint = breakpoint
-            debugger
             this.pixelSlider.noUiSlider.set(breakpoint.pixel)
         }
 

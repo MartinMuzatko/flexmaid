@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --colors --progress",
-    "dev": "webpack-dev-server --colors --progress --watch --inline"
+    "dev": "webpack-dev-server --colors --progress --watch"
   },
   "repository": {
     "type": "git",
@@ -30,7 +30,6 @@
     "node-sass": "^3.7.0",
     "postcss-loader": "^0.9.1",
     "riot": "^2.4.1",
-    "riotjs": "^1.0.4",
     "riotjs-loader": "^3.0.0",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
@@ -38,6 +37,8 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "nouislider": "^8.5.1"
+    "brace": "^0.8.0",
+    "nouislider": "^8.5.1",
+    "riotgear": "^3.5.0"
   }
 }
