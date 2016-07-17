@@ -26,13 +26,13 @@ module.exports = {
         new webpack.ProvidePlugin({
             riot: 'riot'
         }),
-        new webpack.optimize.UglifyJsPlugin({warnings: false})
+        //new webpack.optimize.UglifyJsPlugin({warnings: false}),
     ],
     postcss: function () {
         return [autoprefixer({browsers: 'last 2 versions'})];
     },
     devServer: {
-        port: 7070,
+        port: 8080,
         outputPath: __dirname,
         inline: false,
         progress: true,
