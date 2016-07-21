@@ -131,6 +131,12 @@
             this.pixelSlider.noUiSlider.on('update', () => {
                 this.trigger('sliderUpdated')
             })
+            riot.update()
+        })
+
+        this.tags.editor.on('change', (html) => {
+            this.layout = html
+            this.update()
         })
 
         this.on('sliderUpdated', () => {

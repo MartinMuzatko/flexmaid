@@ -1,14 +1,16 @@
 import './raw.html'
 
 <breakpoint>
-    <div layout layout-align="space-between">
+    <div layout="row" layout-align="space-between">
         <div>
-            <span onclick={remove}>&times;</span>
+            <a class="button" onclick={remove}>Remove</a>
         </div>
         <div>
             <span>{opts.label} - {opts.pixel}</span>
         </div>
-        <yield>
+    </div>
+    <div class="flex-layout">
+        <raw html={opts.html}></raw>
     </div>
     <script>
         remove() {
