@@ -11,7 +11,8 @@ module.exports = {
     },
     module: {
         preLoaders: [
-            { test: /\.html$/, loader: 'riotjs' }
+            { test: /tags\/.*\.html$/, loader: 'riotjs' },
+            { test: /template\/.*\.html$/, loader: 'html' }
         ],
         loaders: [
             {

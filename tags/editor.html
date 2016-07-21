@@ -1,0 +1,58 @@
+<editor>
+
+	<div class="editor"></div>
+
+	<script>
+		if (!opts.editor) opts.editor = { code: '' }
+
+		this.editor = {}
+
+		this.setupEditor = () => {
+			this.editor.setTheme(`ace/theme/${opts.editor.theme || 'monokai'}`)
+			this.editor.getSession().setMode(`ace/mode/${opts.editor.mode || 'html'}`)
+			this.editor.getSession().setTabSize(opts.editor.tabsize || 2)
+			this.editor.getSession().setUseSoftTabs(opts.editor.softtabs)
+			this.editor.getSession().setUseWrapMode(opts.editor.wordwrap)
+			this.editor.setReadOnly(opts.editor.readonly)
+		}
+
+		this.on('mount', () => {
+			this.editor = ace.edit(this.root.querySelector('.editor'))
+			this.editor.$blockScrolling = Infinity
+
+			this.on('update', () => {
+				this.setupEditor()
+				if (opts.editor.code != this.editor.getValue())
+					this.editor.setValue(opts.editor.code, 1)
+			})
+			if (opts.url) {
+				const req = new XMLHttpRequest()
+				req.onload = resp => {
+					opts.editor.code = resp
+					this.update()
+				}
+				req.open('get', opts.url, true)
+				req.send()
+			}
+			this.editor.setValue(opts.editor.code, 1)
+			this.editor.getSession().on('change', (e) => {
+				opts.editor.code = this.editor.getValue()
+				this.trigger('change', this.editor.getValue())
+			})
+			this.setupEditor()
+			this.update()
+		})
+
+	</script>
+
+	<style scoped>
+		.editor {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+
+	</style>
+</editor>

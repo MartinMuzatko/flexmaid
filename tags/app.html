@@ -14,7 +14,7 @@
     </header>
     <section class="code">
         <div>
-            <rg-code editor={editor}></rg-code>
+            <editor editor={editorSettings}></editor>
         </div>
     </section>
     <section>
@@ -35,16 +35,20 @@
         onclick={select}
         style="background-color: hsl(330, 50%, {50+(40/breakpoints.length)*index}%)"
         label="{breakpoint.label}"
+        html={layout}
         pixel="{breakpoint.pixel}">
         </breakpoint>
     </section>
     <script>
 
-        this.editor = {
-            code: '<a href="">',
+        this.editorSettings = {
+            code: require('../template/default.html'),
             mode: 'html',
             tabsize: 4
         }
+
+        this.layout = this.editorSettings.code
+
 
         this.breakpoints = [
             {
