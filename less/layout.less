@@ -29,6 +29,7 @@ section > div {
 }
 
 section.code {
+    .stripe(fluid, fluid, @color-dark);
     > div {
         min-height: 10em;
     }
@@ -46,4 +47,13 @@ breakpoint {
     position: absolute;
     right: 0;
     top: 0;
+}
+
+.flex-layout {
+    background: @color-light;
+    padding: 1em;
+    div {
+        padding: 1em;
+        background: fadeout(@color-primary, 25%);
+    }
 }

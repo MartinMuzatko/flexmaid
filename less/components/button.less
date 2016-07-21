@@ -16,6 +16,7 @@ BUTTON COMPONENT
     font-size: 1em;
     cursor: pointer;
     line-height: 1;
+    padding: .5em;
     text-transform: uppercase;
     transition: all @duration-action ease;
     font-family: @font-body;
@@ -53,6 +54,7 @@ BUTTON COMPONENT
 }
 
 .button {
+    .button();
     &.outline {
         .button(@color-primary, @type: outline);
     }
