@@ -16,6 +16,9 @@ import './editor.html'
         <p><small>Love this tool?</small> <iframe src="https://ghbtns.com/github-btn.html?user=MartinMuzatko&repo=flexmaid&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></p>
     </header>
     <section class="code">
+        <menu>
+            <a class="button" each={template in templates} onclick={loadTemplate}>{template}</a>
+        </menu>
         <div>
             <editor editor={editorSettings}></editor>
         </div>
@@ -38,7 +41,7 @@ import './editor.html'
         onclick={select}
         style="background-color: hsl(330, 50%, {50+(40/breakpoints.length)*index}%)"
         label="{breakpoint.label}"
-        html={layout}
+        html={template}
         pixel="{breakpoint.pixel}">
         </breakpoint>
     </section>
@@ -50,8 +53,12 @@ import './editor.html'
             tabsize: 4
         }
 
-        this.layout = this.editorSettings.code
+        this.template = this.editorSettings.code
 
+        this.templates = [
+            'default',
+            'nested'
+        ]
 
         this.breakpoints = [
             {
@@ -77,6 +84,11 @@ import './editor.html'
         ]
 
         this.breakpoint = {}
+
+        loadTemplate(e) {
+            this.template = require(`../template/${e.item.template}.html`)
+            this.tags.editor.editor.setValue(this.template)
+        }
 
         changeName(e) {
             this.breakpoint.label = e.target.value
@@ -138,7 +150,7 @@ import './editor.html'
         })
 
         this.tags.editor.on('change', (html) => {
-            this.layout = html
+            this.template = html
             this.update()
         })
 
