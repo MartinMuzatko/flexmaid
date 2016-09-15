@@ -14,9 +14,10 @@ header {
     .stripe(small, 1*16, @color-primary);
     color: @color-light;
     font-size: 2em;
+    display: none;
 }
 
-header + section {
+section {
     .stripe(small, 1*16, @color-light);
 }
 
@@ -29,7 +30,8 @@ section > div {
 }
 
 section.code {
-    .stripe(fluid, fluid, @color-dark);
+    .stripe(fluid, fluid, lighten(@color-dark, 10%));
+    color: @color-light;
     > div {
         min-height: 10em;
     }
@@ -37,6 +39,9 @@ section.code {
 
 breakpoint {
     display: block;
+    > div {
+        display: block;
+    }
 }
 
 .slider {
@@ -63,9 +68,13 @@ breakpoint {
 }
 
 menu {
-    margin: 0;
+    margin: 0 auto;
     padding: 1em 0;
-    > * {
+    div > .button {
         margin-right: 1em;
     }
+}
+
+editor {
+    position: relative;
 }
