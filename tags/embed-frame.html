@@ -1,0 +1,24 @@
+import './raw.html'
+
+<embed-frame>
+    <iframe name="iframe">
+    </iframe>
+    <raw html={opts.html}></raw>
+    <script>
+        this.on('update', () => {
+            if (this.iframe.contentDocument) {
+                var content = this.tags.raw.root.innerHTML
+                this.iframe.contentDocument.body.innerHTML = content
+            }
+        })
+    </script>
+    <style scoped>
+        raw {
+            display: none;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+        }
+    </style>
+</embed-frame>

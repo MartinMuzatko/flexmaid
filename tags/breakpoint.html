@@ -1,4 +1,4 @@
-import './raw.html'
+import './embed-frame.html'
 
 <breakpoint>
     <div layout="row" layout-align="space-between">
@@ -9,8 +9,8 @@ import './raw.html'
             <span>{opts.label} - {opts.pixel}</span>
         </div>
     </div>
-    <div class="flex-layout">
-        <raw html={opts.html}></raw>
+    <div style="max-width: {opts.pixel}px" class="flex-layout">
+        <embed-frame html={opts.html}></embed-frame>
     </div>
     <script>
         remove() {
