@@ -16,11 +16,20 @@ import './editor.html'
         <p><small>Love this tool?</small> <iframe src="https://ghbtns.com/github-btn.html?user=MartinMuzatko&repo=flexmaid&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></p>
     </header>
     <section class="code">
-        <menu>
-            <a class="button" each={template in templates} onclick={loadTemplate}>{template}</a>
+        <menu layout="row" layout-align="space-between">
+            <div>
+                <a class="button" each={template in templates} onclick={loadTemplate}>{template}</a>
+            </div>
+            <a flex-end href="" class="button">Settings</a>
         </menu>
-        <div>
-            <editor editor={editorSettings}></editor>
+        <div class="features" layout="row">
+            <editor flex="75" editor={editorSettings}></editor>
+            <div flex="25">
+                Breakpoint Features
+                <div onclick={toggleFeature} each={name, feature in features}>
+                    {name} {feature.active.toString()}
+                </div>
+            </div>
         </div>
     </section>
     <section>
@@ -39,7 +48,7 @@ import './editor.html'
         if={breakpoint.active}
         layout="row" layout-align="space-between"
         onclick={select}
-        style="background-color: hsl(330, 50%, {50+(40/breakpoints.length)*index}%)"
+        style="background-color: hsl({hue}, 50%, {50+(40/breakpoints.length)*index}%)"
         label="{breakpoint.label}"
         html={template}
         pixel="{breakpoint.pixel}">
@@ -52,6 +61,31 @@ import './editor.html'
             mode: 'html',
             tabsize: 4
         }
+
+        this.features = {
+            "order": {
+                active: true,
+                info: ''
+            },
+            "layout": {
+                active: true,
+                info: ''
+            },
+            "layout-align": {
+                active: true,
+                info: ''
+            },
+            "flex": {
+                active: true,
+                info: ''
+            },
+            "visibility": {
+                active: true,
+                info: ''
+            },
+        }
+
+        this.hue = 210
 
         this.template = this.editorSettings.code
 
@@ -92,6 +126,10 @@ import './editor.html'
 
         changeName(e) {
             this.breakpoint.label = e.target.value
+        }
+
+        toggleFeature(e) {
+            e.item.feature.active = !e.item.feature.active
         }
 
         select(e) {
