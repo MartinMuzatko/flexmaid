@@ -19,8 +19,11 @@ module.exports = {
                 test: /\.(jpe?g|png|gif|svg|mp4)$/i,
                 loader:'file-loader'
             },
-            { test: /\.less$/, loader: 'style!css!postcss!less' },
+            { test: /\.less$/, loader: 'css!postcss!less' },
             { test: /\.js$|\.html$/, loader: 'babel', query: { presets: 'es2015-riot' } }
+        ],
+        postLoaders: [
+            { test: /\.less$/, loader: 'style' }
         ]
     },
     plugins: [
