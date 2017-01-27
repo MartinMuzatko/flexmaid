@@ -1,14 +1,14 @@
 import './raw.html'
 
 <embed-frame>
-    <iframe name="iframe">
+    <iframe height="50" ref="iframe">
     </iframe>
     <raw html={opts.html}></raw>
     <script>
         this.on('update', () => {
-            if (this.iframe.contentDocument) {
+            if (this.refs.iframe.contentDocument) {
                 var content = this.tags.raw.root.innerHTML
-                this.iframe.contentDocument.body.innerHTML = content
+                this.refs.iframe.contentDocument.body.innerHTML = content
             }
         })
     </script>

@@ -30,7 +30,7 @@ module.exports = {
         new webpack.ProvidePlugin({
             riot: 'riot'
         }),
-        //new webpack.optimize.UglifyJsPlugin({warnings: false}),
+        new webpack.optimize.UglifyJsPlugin({warnings: false}),
     ],
     postcss: function () {
         return [autoprefixer({browsers: 'last 2 versions'})];

@@ -6,15 +6,15 @@ import './embed-frame.html'
             <a class="button" onclick={remove}>Remove</a>
         </div>
         <div>
-            <span>{opts.label} - {opts.pixel}</span>
+            <span>{opts.breakpoint.label} - {opts.breakpoint.pixel}</span>
         </div>
     </div>
-    <div style="max-width: {opts.pixel}px" class="flex-layout">
+    <div style="max-width: {opts.breakpoint.pixel}px" class="flex-layout">
         <embed-frame html={opts.html}></embed-frame>
     </div>
     <script>
         remove() {
-            this.parent.trigger('remove', this)
+            this.parent.trigger('remove', this.breakpoint)
         }
     </script>
 </breakpoint>

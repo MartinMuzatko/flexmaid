@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/MartinMuzatko/flexmaid#readme",
   "devDependencies": {
-    "autoprefixer-loader": "^3.2.0",
     "babel": "^6.5.2",
     "babel-core": "^6.9.1",
     "babel-loader": "^6.2.4",
@@ -29,9 +28,9 @@
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "node-sass": "^3.7.0",
-    "postcss-loader": "^0.9.1",
+    "postcss-loader": "^1.2.2",
     "raw-loader": "^0.5.1",
-    "riot": "^2.4.1",
+    "riot": "^3.0.7",
     "riotjs-loader": "^3.0.0",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
@@ -40,6 +39,7 @@
   },
   "dependencies": {
     "brace": "^0.8.0",
+    "normalize.css": "^5.0.0",
     "nouislider": "^8.5.1",
     "riotgear": "^3.5.0"
   }
