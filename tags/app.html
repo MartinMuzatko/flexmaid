@@ -7,12 +7,15 @@
                 <h1>Flex Maid</h1>
                 <span>
                     At your service
+                    <p>
+                        <small>Flexbox as a service</small>
+                    </p>
                 </span>
             </div>
         </div>
         <p><small>Love this tool?</small> <iframe src="https://ghbtns.com/github-btn.html?user=MartinMuzatko&repo=flexmaid&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></p>
     </header>
-    <section class="code">
+    <section class="code" style="display: none;">
         <menu layout="row" layout-align="space-between">
             <div>
                 Templates:
@@ -33,7 +36,6 @@
     </section>
     <section>
         <div layout="column" layout-align="center">
-            msg: {message}
             <form layout layout-align="space-around start">
                 <input type="text" onkeyup={changeName} ref="label" value="{breakpoints.getSelected().label}">
                 {breakpoints.getSelected().pixel}px
